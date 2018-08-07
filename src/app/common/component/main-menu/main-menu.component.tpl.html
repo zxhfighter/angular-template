@@ -1,0 +1,9 @@
+<ul class="ui-main-menu clearfix">
+    <li
+        *ngFor="let menu of menus"
+        class="ui-main-menu-item"
+        [class.active]="menu.path == activedPath"
+        (click)="onClickMenu(menu)">
+        <div class="ui-main-menu-text">{{ menu.name }}</div>
+    </li>
+</ul>

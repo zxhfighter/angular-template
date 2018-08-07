@@ -5,8 +5,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentModule } from '../../common/component/component.module';
 
 import { Busi1RouterModule } from './busi1.router';
+import { Busi1Service } from './busi1.service';
 
 import { Busi1FormComponent } from './form';
 import { Busi1ListComponent } from './list';
@@ -16,13 +18,16 @@ import { Busi1ListComponent } from './list';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        Busi1RouterModule
+        Busi1RouterModule,
+        ComponentModule
     ],
     declarations: [
         Busi1FormComponent,
         Busi1ListComponent
     ],
-    providers: [],
+    providers: [
+        Busi1Service
+    ],
     exports: []
 })
 export class Busi1Module { }

@@ -1,9 +1,67 @@
-<h3>业务一列表</h3>
+<div class="app-base-list">
+    <div class="app-base-list-breadcrumb">
+        <nb-breadcrumb [datasource]="breadcrumbs"></nb-breadcrumb>
+    </div>
 
-<button>新建业务一</button>
+    <div class="app-base-list-operations">
+        <button nb-button theme="primary" routerLink="/main/busi1/form">
+            <i class="iconfont icon-plus_lg"></i>&nbsp;新建业务一
+        </button>
+    </div>
 
-<p>
-    <span>业务X</span>
-    <a href="">修改</a>
-    <a href="">查看</a>
-</p>
+    <div class="app-base-list-table">
+        <table nb-table [datasource]="datasource" [pageSize]="5">
+            <thead nb-thead>
+                <tr nb-row>
+                    <th *ngFor="let field of fields" [field]="field.name" [align]="field.align || 'left'" #th="nbTH">
+                        <span class="field-title">{{ field.title }}</span>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody nb-tbody *ngIf="datasource.length">
+                <tr nb-row *ngFor="let row of datasource">
+                    <td nb-td>
+                        <div class="field-id">
+                            {{ row.id }}
+                        </div>
+                    </td>
+
+                    <td nb-td>
+                        <div class="field-name">
+                            {{ row.name }}
+                        </div>
+                    </td>
+
+                    <td nb-td>
+                        <div class="field-age">
+                            {{ row.age }}
+                        </div>
+                    </td>
+
+                    <td nb-td>
+                        <div class="field-gender">
+                            {{ row.gender }}
+                        </div>
+                    </td>
+
+                    <td nb-td>
+                        <div class="field-rank">
+                            {{ row.rank }}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="app-base-list-footer">
+        <nb-page
+			theme="align"
+			[total]="datasource.length"
+			[count]="size"
+			[list]="sizeList"
+			(pageChange)="onPageChange($event)">
+		</nb-page>
+    </div>
+</div>

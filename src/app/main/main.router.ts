@@ -5,18 +5,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { MainComponent } from './main.component';
 import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
 
     // 默认导航到列表路由
-    { path: '', pathMatch: 'full', redirectTo: 'busi1' },
+    {
+        path: '',
+        component: MainComponent,
+        children: [
 
-    // 列表路由
-    { path: 'busi1', loadChildren: './busi1/busi1.module#Busi1Module' },
+            // 默认导航子路由到 busi1
+            { path: '', pathMatch: 'full', redirectTo: 'busi1' },
 
-    // 表单路由
-    { path: 'busi2', loadChildren: './busi2/busi2.module#Busi2Module' },
+            // 列表路由
+            { path: 'busi1', loadChildren: './busi1/busi1.module#Busi1Module' },
+
+            // 表单路由
+            { path: 'busi2', loadChildren: './busi2/busi2.module#Busi2Module' },
+        ]
+    },
 
     // 错误路由
     { path: 'error', component: ErrorComponent }

@@ -1,8 +1,39 @@
-<h1>业务1表单</h1>
+<div class="app-base-form">
 
-<form action="">
-    <div>
-        <label for="">名称</label>
-        <input type="text">
+    <div class="app-base-form-breadcrumb">
+        <nb-breadcrumb [datasource]="breadcrumbs"></nb-breadcrumb>
     </div>
-</form>
+
+    <div class="app-base-form-main">
+        <form [formGroup]="form">
+            <div class="form-row">
+                <div class="form-row-label">
+                    <label for="name">姓名：</label>
+                </div>
+                <div class="form-row-content">
+                    <input id="name" nbInput type="text" formControlName="name">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-row-label">
+                    <label>性别：</label>
+                </div>
+                <div class="form-row-content">
+                    <nb-boxgroup
+                        type="radio"
+                        formControlName="gender"
+                        [datasource]="genders">
+                    </nb-boxgroup>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="app-base-form-footer">
+        <button nb-button theme="primary" [disabled]="!form.valid" (click)="onSubmit()">确&nbsp;定</button>
+        <button nb-button theme="default" (click)="onCancel()">取&nbsp;消</button>
+    </div>
+</div>

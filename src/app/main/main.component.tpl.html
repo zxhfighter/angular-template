@@ -1,8 +1,34 @@
-<nav>
-    <ul>
-        <li><a href="">业务1</a></li>
-        <li><a href="">业务2</a></li>
-    </ul>
-</nav>
+<!-- loading -->
+<app-loading-indicator *ngIf="false"></app-loading-indicator>
 
-<router-outlet></router-outlet>
+<div class="app-main">
+    <div class="app-main-header">
+        <div class="app-logo">Logo is Here</div>
+        <div class="app-main-menu">
+            <app-main-menu
+                [menus]="mainMenus"
+                [activedPath]="activedPath"
+                (menuClick)="onClickMainMenu($event)">
+            </app-main-menu>
+        </div>
+        <div class="app-user-info">
+            <span>用户名：</span>
+            <span>Lily</span>
+            <a href="#">退出登录</a>
+        </div>
+    </div>
+
+    <div class="app-main-body">
+        <div class="app-main-body-sidebar">
+            sidebar is here
+        </div>
+
+        <div class="app-main-body-content">
+            <router-outlet></router-outlet>
+
+            <div class="app-main-body-foot">
+                Angular &copy; 2018
+            </div>
+        </div>
+    </div>
+</div>
