@@ -8,7 +8,11 @@ import {
     ViewEncapsulation,
     Input,
     Output,
-    EventEmitter
+    EventEmitter,
+    ViewChild,
+    ElementRef,
+    Renderer2,
+    AfterViewInit
 } from '@angular/core';
 
 /**
@@ -77,12 +81,38 @@ export interface MenuItem {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class MainMenuComponent {
+export class MainMenuComponent implements AfterViewInit {
     @Output() menuClick = new EventEmitter<MenuItem>();
     @Input() menus: MenuItem[];
     @Input() activedPath: string;
 
-    onClickMenu(menu: MenuItem) {
+    @ViewChild('indicator') indicator: ElementRef<any>;
+
+    constructor(
+        private render: Renderer2,
+        private el: ElementRef
+    ) {
+
+    }
+
+    onClickMenu(menu: MenuItem, clickEvent: Event) {
         this.menuClick.emit(menu);
+
+        this.setIndicatorPosition(clickEvent.target as HTMLElement);
+    }
+
+    ngAfterViewInit() {
+        const target = (this.el.nativeElement as HTMLElement).querySelector('.active') as HTMLElement;
+        if (target) {
+            this.setIndicatorPosition(target);
+        }
+    }
+
+    setIndicatorPosition(target: HTMLElement) {
+        const offsetLeft = this.el.nativeElement.offsetLeft;
+        const { width: targetWidth, left: targetLeft } = target.getBoundingClientRect();
+        const indicator = this.indicator.nativeElement;
+        this.render.setStyle(indicator, 'width', targetWidth + 'px');
+        this.render.setStyle(indicator, 'left', (targetLeft - offsetLeft) + 'px');
     }
 }

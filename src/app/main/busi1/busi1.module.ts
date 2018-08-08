@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentModule } from '../../common/component/component.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Busi1RouterModule } from './busi1.router';
 import { Busi1Service } from './busi1.service';
@@ -18,6 +19,7 @@ import { Busi1ListComponent } from './list';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule,
         Busi1RouterModule,
         ComponentModule
     ],

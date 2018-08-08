@@ -4,8 +4,7 @@
 
 import {
     Component,
-    OnInit,
-    ChangeDetectionStrategy
+    OnInit
 } from '@angular/core';
 
 import { MenuItem } from '../common/component/main-menu';
@@ -14,8 +13,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-name',
     templateUrl: './main.component.tpl.html',
-    styleUrls: ['./main.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./main.component.less']
 })
 export class MainComponent implements OnInit {
 
@@ -25,7 +23,7 @@ export class MainComponent implements OnInit {
             path: '/main/busi1'
         },
         {
-            name: '业务二',
+            name: '比较长的业务二',
             path: '/main/busi2'
         }
     ];
